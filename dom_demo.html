@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Demo - Smart E-Commerce</title>
+    <script src="assets/js/dynamic.js"></script>
+    <style>
+        #dynamicMenu { display: none; background: #f0f0f0; padding: 10px; margin-top: 10px; }
+        button { margin: 5px; padding: 8px 15px; }
+    </style>
+</head>
+<body>
+    <h2>DOM Manipulation Examples</h2>
+    <button onclick="toggleMenu()">Toggle Menu</button>
+    <div id="dynamicMenu">
+        <a href="#">Home</a> | <a href="#">Products</a> | <a href="#">Cart</a> | <a href="#">Login</a>
+    </div>
+
+    <hr>
+    <h3>Live Text Preview</h3>
+    <input type="text" id="liveInput" placeholder="Type something..." onkeyup="previewText()">
+    <p>Preview: <span id="previewArea"></span></p>
+</body>
+</html>

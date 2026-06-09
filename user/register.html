@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Smart E-Commerce</title>
+    <style>
+        body { font-family: Arial; margin: 50px; }
+        .error { color: red; font-size: 14px; margin-top: 5px; }
+        .strength { font-size: 14px; margin-top: 5px; }
+        input { padding: 8px; width: 250px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #2c3e50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Create Account</h2>
+    <form id="regForm">
+        <label>Email:</label><br>
+        <input type="email" id="email" required><br>
+        <span id="emailError" class="error"></span><br>
+
+        <label>Password:</label><br>
+        <input type="password" id="password"><br>
+        <span id="pwdStrength" class="strength"></span><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        // Form submission validation
+        document.getElementById("regForm").addEventListener("submit", function(e) {
+            e.preventDefault();  // stop actual submission for demo
+            let email = document.getElementById("email").value;
+            let pwd = document.getElementById("password").value;
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Email validation
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email address";
+                return;
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+
+            // Password strength check
+            let strength = "";
+            if (pwd.length === 0) strength = "";
+            else if (pwd.length < 6) strength = "Weak (minimum 6 characters)";
+            else if (pwd.match(/[A-Z]/) && pwd.match(/[0-9]/) && pwd.length >= 8) strength = "Strong";
+            else strength = "Medium (add uppercase letter and number)";
+            document.getElementById("pwdStrength").innerText = "Strength: " + strength;
+
+            if (emailPattern.test(email) && pwd.length >= 6) {
+                alert("Form is valid! (Demo)");
+            }
+        });
+
+        // Live password strength update while typing
+        document.getElementById("password").addEventListener("keyup", function() {
+            let pwd = this.value;
+            let strength = "";
+            if (pwd.length === 0) strength = "";
+            else if (pwd.length < 6) strength = "Weak (minimum 6 characters)";
+            else if (pwd.match(/[A-Z]/) && pwd.match(/[0-9]/) && pwd.length >= 8) strength = "Strong";
+            else strength = "Medium (add uppercase letter and number)";
+            document.getElementById("pwdStrength").innerText = "Strength: " + strength;
+        });
+    </script>
+</body>
+</html>
